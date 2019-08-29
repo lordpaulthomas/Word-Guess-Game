@@ -10,18 +10,31 @@ for (var i = 0; i < answer.length; i++) {
 }
 console.log(hiddenArray);
 
+function checkForWin(arr1, arr2){
+    var sum = 0;
+    for (var i = 0; i < arr1.length; i++ ){
+        if(arr1[i] === arr2[i]){
+            sum++;
+        }
+    }
+    if (sum === arr1.length){
+        return true;
+    }
+}
 
     document.onkeyup = function (event) {
-        isfound = false;
         var go = event.key;
         for (var i = 0; i < answer.length; i++) {
             if (answer[i] === go) {
                 hiddenArray[i] = go;
             }
         }
+    if(checkForWin(hiddenArray, answer)){
+        document.write('you win');
+    }
 
         console.log(lives)
         console.log(hiddenArray);
-        html = "<p>You have to guess:</p>" + hiddenArray;
+        html = "<p>You have to guess:</p>" + hiddenArray.join(" ");
         document.getElementById('lead').innerHTML = html;
     }
